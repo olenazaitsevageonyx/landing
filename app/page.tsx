@@ -2,6 +2,384 @@
 
 import React, { useState } from 'react'
 
+function DemoTabs() {
+  const [activeTab, setActiveTab] = useState(0)
+
+  const tabs = [
+    { id: 0, label: 'Brand Analysis', shortLabel: 'Analysis' },
+    { id: 1, label: 'Event Roadmap', shortLabel: 'Events' },
+    { id: 2, label: 'MENA Regional', shortLabel: 'Regional' },
+  ]
+
+  return (
+    <div>
+      {/* Tab Navigation */}
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex bg-white/5 rounded-full p-1">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
+                activeTab === tab.id
+                  ? 'bg-cyan-400 text-black'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <span className="hidden md:inline">{tab.label}</span>
+              <span className="md:hidden">{tab.shortLabel}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
+        
+        {/* Tab 1: Brand Analysis */}
+        {activeTab === 0 && (
+          <div className="p-6 md:p-8">
+            {/* Demo Badge */}
+            <div className="inline-block px-3 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded-full text-cyan-400 text-xs font-medium mb-6">
+              DEMO SAMPLE
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div>
+                <h3 className="text-xl font-semibold mb-1">Single Model Deep Analysis</h3>
+                <p className="text-gray-500 text-sm mb-6">Google Gemini 2.5 | January 2026</p>
+
+                {/* GEONYX Index */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-400">GEONYX INDEX</span>
+                    <span className="text-2xl font-light text-cyan-400">583<span className="text-gray-500 text-lg">/1000</span></span>
+                  </div>
+                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-cyan-400 to-cyan-300 rounded-full" style={{width: '58.3%'}}></div>
+                  </div>
+                </div>
+
+                {/* E-E-A-T Breakdown */}
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm text-gray-400 mb-2">E-E-A-T Breakdown</p>
+                  {[
+                    { label: 'Experience', value: 72 },
+                    { label: 'Expertise', value: 58 },
+                    { label: 'Authoritativeness', value: 41 },
+                    { label: 'Trustworthiness', value: 94 },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <span className="text-xs text-gray-500 w-28">{item.label}</span>
+                      <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full ${item.value > 70 ? 'bg-green-400' : item.value > 50 ? 'bg-yellow-400' : 'bg-red-400'}`}
+                          style={{width: `${item.value}%`}}
+                        ></div>
+                      </div>
+                      <span className="text-xs text-gray-400 w-8">{item.value}%</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Findings */}
+                <div className="p-4 bg-white/[0.03] rounded-xl">
+                  <p className="text-sm text-gray-400 mb-3">Key Findings</p>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-start gap-2">
+                      <span className="text-red-400 mt-0.5">x</span>
+                      <span className="text-gray-300">CEO attribution incorrect</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-yellow-400 mt-0.5">~</span>
+                      <span className="text-gray-300">Revenue data outdated (2+ years)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-yellow-400 mt-0.5">!</span>
+                      <span className="text-gray-300">Semantic fragmentation detected</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-400 mt-0.5">+</span>
+                      <span className="text-gray-300">Strong technical trust signals</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div>
+                <p className="text-sm text-gray-400 mb-4">Deliverables Include</p>
+                
+                <div className="space-y-4">
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Technical Recommendations</span>
+                    </div>
+                    <p className="text-sm text-gray-500">Schema.org markup code ready to implement. Content restructuring guidelines. Passage optimization rules.</p>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Strategic Roadmap</span>
+                    </div>
+                    <p className="text-sm text-gray-500">Priority actions ranked by impact. Knowledge Graph optimization. Authority building timeline.</p>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Projected Outcomes</span>
+                    </div>
+                    <p className="text-sm text-gray-500">90-day score trajectory. Risk reduction timeline. Expected: +150-200 pts improvement.</p>
+                  </div>
+                </div>
+
+                {/* Service Note */}
+                <div className="mt-6 p-4 border border-cyan-400/20 rounded-xl">
+                  <p className="text-sm text-gray-300">
+                    <span className="text-cyan-400 font-medium">Included:</span> Automated analysis + Expert strategic review + Implementation support
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Event Roadmap */}
+        {activeTab === 1 && (
+          <div className="p-6 md:p-8">
+            {/* Demo Badge */}
+            <div className="inline-block px-3 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded-full text-cyan-400 text-xs font-medium mb-6">
+              DEMO SCENARIO
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div>
+                <h3 className="text-xl font-semibold mb-1">Event Action Roadmap</h3>
+                <p className="text-gray-500 text-sm mb-6">Major Conference Participation</p>
+
+                {/* Challenge */}
+                <div className="p-4 bg-white/[0.03] rounded-xl mb-6">
+                  <p className="text-sm text-gray-400 mb-2">Challenge</p>
+                  <p className="text-gray-300">"How do we ensure AI models correctly attribute our brand during and after a high-visibility event?"</p>
+                </div>
+
+                {/* Timeline */}
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-400">Action Timeline</p>
+                  
+                  <div className="relative pl-6 border-l border-cyan-400/30">
+                    <div className="absolute left-0 top-0 w-3 h-3 bg-cyan-400 rounded-full -translate-x-1.5"></div>
+                    <div className="pb-6">
+                      <p className="font-medium text-white">Pre-Event (T-60 days)</p>
+                      <p className="text-sm text-gray-500 mt-1">Baseline scan. Event Schema implementation. Entity association strategy.</p>
+                    </div>
+                  </div>
+
+                  <div className="relative pl-6 border-l border-cyan-400/30">
+                    <div className="absolute left-0 top-0 w-3 h-3 bg-cyan-400 rounded-full -translate-x-1.5"></div>
+                    <div className="pb-6">
+                      <p className="font-medium text-white">Live Event (Event Week)</p>
+                      <p className="text-sm text-gray-500 mt-1">Real-time monitoring. Spike velocity management. Social signal coordination.</p>
+                    </div>
+                  </div>
+
+                  <div className="relative pl-6">
+                    <div className="absolute left-0 top-0 w-3 h-3 bg-cyan-400 rounded-full -translate-x-1.5"></div>
+                    <div>
+                      <p className="font-medium text-white">Post-Event (T+30 days)</p>
+                      <p className="text-sm text-gray-500 mt-1">Delta scan comparison. Cornerstone content. Authority consolidation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div>
+                <p className="text-sm text-gray-400 mb-4">Technical Deliverables</p>
+                
+                <div className="space-y-4">
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Temporal Grounding</p>
+                    <p className="text-sm text-gray-500 mb-3">ISO 8601 timestamp protocols for accurate AI time-binding</p>
+                    <div className="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-400">
+                      <span className="text-cyan-400">startDate:</span> "2026-02-18T14:00:00-07:00"
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Event Schema</p>
+                    <p className="text-sm text-gray-500 mb-3">Structured data for speaker attribution and sponsorship</p>
+                    <div className="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-400">
+                      <span className="text-cyan-400">@type:</span> "Event"<br/>
+                      <span className="text-cyan-400">performer:</span> &#123; @type: "Person" &#125;
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Sample Outcomes</p>
+                    <div className="grid grid-cols-2 gap-4 mt-3">
+                      <div>
+                        <p className="text-2xl font-light text-cyan-400">+150-200</p>
+                        <p className="text-xs text-gray-500">Index point lift</p>
+                      </div>
+                      <div>
+                        <p className="text-2xl font-light text-cyan-400">+340%</p>
+                        <p className="text-xs text-gray-500">Citation frequency</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Service Note */}
+                <div className="mt-6 p-4 border border-cyan-400/20 rounded-xl">
+                  <p className="text-sm text-gray-300">
+                    <span className="text-cyan-400 font-medium">Included:</span> Platform monitoring + Live supervision + Dedicated strategist + Crisis response
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: MENA Regional */}
+        {activeTab === 2 && (
+          <div className="p-6 md:p-8">
+            {/* Demo Badge */}
+            <div className="inline-block px-3 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded-full text-cyan-400 text-xs font-medium mb-6">
+              DEMO SCENARIO
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div>
+                <h3 className="text-xl font-semibold mb-1">MENA Regional Deep-Dive</h3>
+                <p className="text-gray-500 text-sm mb-6">UAE + KSA Market Entry</p>
+
+                {/* Challenge */}
+                <div className="p-4 bg-white/[0.03] rounded-xl mb-6">
+                  <p className="text-sm text-gray-400 mb-2">Challenge</p>
+                  <p className="text-gray-300">"How do sovereign AI models perceive our brand? What is required for government trust in MENA?"</p>
+                </div>
+
+                {/* Regional Models */}
+                <div className="mb-6">
+                  <p className="text-sm text-gray-400 mb-3">Regional Model Coverage</p>
+                  <div className="space-y-2">
+                    {[
+                      { model: 'Falcon 180B', origin: 'UAE/TII', score: 312 },
+                      { model: 'Jais 30B', origin: 'UAE/G42', score: 445 },
+                      { model: 'Gemini (Arabic)', origin: 'Google', score: 623 },
+                    ].map((item) => (
+                      <div key={item.model} className="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+                        <div>
+                          <p className="text-sm font-medium">{item.model}</p>
+                          <p className="text-xs text-gray-500">{item.origin}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className={`text-lg font-light ${item.score < 400 ? 'text-red-400' : item.score < 550 ? 'text-yellow-400' : 'text-green-400'}`}>
+                            {item.score}
+                          </p>
+                          <p className="text-xs text-gray-500">/1000</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Sovereignty Signals */}
+                <div className="p-4 bg-white/[0.03] rounded-xl">
+                  <p className="text-sm text-gray-400 mb-3">Sovereignty Signals Audit</p>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-300">NER Registration (UAE)</span>
+                      <span className="text-red-400">Missing</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-300">Maroof Certification (KSA)</span>
+                      <span className="text-red-400">Missing</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-300">Dubai AI Seal</span>
+                      <span className="text-red-400">Missing</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-300">Arabic Content</span>
+                      <span className="text-yellow-400">Partial</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div>
+                <p className="text-sm text-gray-400 mb-4">Strategic Roadmap</p>
+                
+                <div className="space-y-4">
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Phase 1: Sovereignty Infrastructure</p>
+                    <p className="text-xs text-gray-500 mb-2">Weeks 1-4</p>
+                    <p className="text-sm text-gray-400">Government registry applications. Data residency setup. Compliance documentation.</p>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Phase 2: Content Localization</p>
+                    <p className="text-xs text-gray-500 mb-2">Weeks 5-12</p>
+                    <p className="text-sm text-gray-400">Arabic website section. Transliteration standardization. Regional press releases via WAM/SPA.</p>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Phase 3: Authority Building</p>
+                    <p className="text-xs text-gray-500 mb-2">Weeks 13-24</p>
+                    <p className="text-sm text-gray-400">Regional partnerships. Vision 2030 alignment. Influencer engagement strategy.</p>
+                  </div>
+
+                  <div className="p-4 bg-white/[0.03] rounded-xl">
+                    <p className="font-medium mb-2">Expected Outcomes (6 months)</p>
+                    <div className="grid grid-cols-2 gap-4 mt-3">
+                      <div>
+                        <p className="text-2xl font-light text-cyan-400">+215</p>
+                        <p className="text-xs text-gray-500">Regional index lift</p>
+                      </div>
+                      <div>
+                        <p className="text-2xl font-light text-cyan-400">78%</p>
+                        <p className="text-xs text-gray-500">Sovereignty score</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Service Note */}
+                <div className="mt-6 p-4 border border-cyan-400/20 rounded-xl">
+                  <p className="text-sm text-gray-300">
+                    <span className="text-cyan-400 font-medium">Included:</span> Sovereign model scans + MENA specialists + Registry navigation + Government liaison
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -72,6 +450,7 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-6 text-sm text-gray-400">
             <button onClick={() => scrollTo('models')} className="hover:text-white transition-colors">Models</button>
             <button onClick={() => scrollTo('geo')} className="hover:text-white transition-colors">SEO to GEO</button>
+            <button onClick={() => scrollTo('deliverables')} className="hover:text-white transition-colors">Deliverables</button>
             <button onClick={() => scrollTo('coverage')} className="hover:text-white transition-colors">Coverage</button>
             <button onClick={() => scrollTo('contact')} className="hover:text-white transition-colors">Contact</button>
           </div>
@@ -401,6 +780,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* See It In Action */}
+      <section id="deliverables" className="py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 text-sm font-medium tracking-wider uppercase mb-4">Platform Preview</p>
+            <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-6">
+              See It In Action
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              Explore sample analyses from the GEONYX platform. Every engagement combines automated technology with expert strategic guidance.
+            </p>
+          </div>
+
+          <DemoTabs />
+
+          {/* Download CTA */}
+          <div className="mt-16 text-center">
+            <div className="inline-block p-8 bg-white/[0.02] border border-white/10 rounded-2xl">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="text-xl font-medium">Full Sample Report</span>
+              </div>
+              <p className="text-gray-400 text-sm mb-6 max-w-md">
+                Get the complete analysis with technical code examples, implementation checklists, and strategic roadmaps.
+              </p>
+              <a 
+                href="/GEONYX_Sample_Report.pdf" 
+                download="GEONYX_Sample_Report.pdf"
+                className="inline-block px-8 py-3 bg-cyan-400 text-black font-medium rounded-full hover:bg-cyan-300 transition-all hover:scale-105"
+              >
+                Download Sample PDF
+              </a>
+            </div>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 text-sm max-w-2xl mx-auto">
+              These examples demonstrate GEONYX platform capabilities. All data shown is simulated for illustration purposes. Every engagement includes automated analysis, expert review, implementation support, and ongoing optimization.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section className="py-32 px-6 border-t border-white/5 bg-gradient-to-b from-cyan-950/20 to-black">
         <div className="max-w-6xl mx-auto">
@@ -411,17 +836,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { step: '01', title: 'AI Scanning', desc: 'Query multiple LLMs simultaneously about your brand', icon: '🔍' },
-              { step: '02', title: 'Entity Analysis', desc: 'Verify factual accuracy of every attribute', icon: '✓' },
-              { step: '03', title: 'GEO Clustering', desc: 'Map regional interpretation differences', icon: '🌍' },
-              { step: '04', title: 'Index Score', desc: 'Get your unified GEONYX INDEX (0-1000)', icon: '📊' }
+              { step: '01', title: 'AI Scanning', desc: 'Query multiple LLMs simultaneously about your brand' },
+              { step: '02', title: 'Entity Analysis', desc: 'Verify factual accuracy of every attribute' },
+              { step: '03', title: 'GEO Clustering', desc: 'Map regional interpretation differences' },
+              { step: '04', title: 'Index Score', desc: 'Get your unified GEONYX INDEX (0-1000)' }
             ].map((item, i) => (
               <div key={i} className="relative p-6 bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 rounded-2xl hover:border-cyan-400/50 transition-all group">
                 <div className="absolute left-0 top-6 bottom-6 w-1 bg-cyan-400 rounded-full"></div>
                 <div className="text-5xl font-bold text-cyan-400/20 absolute top-4 right-4 group-hover:text-cyan-400/30 transition-colors">{item.step}</div>
                 
                 <div className="relative z-10 pl-4">
-                  <div className="text-2xl mb-3">{item.icon}</div>
                   <h3 className="font-semibold text-white mb-2">{item.title}</h3>
                   <p className="text-sm text-gray-400">{item.desc}</p>
                 </div>
@@ -513,7 +937,7 @@ export default function Home() {
             <div className="flex items-center gap-6 text-sm text-gray-500">
               <button onClick={() => scrollTo('models')} className="hover:text-white transition-colors">Models</button>
               <button onClick={() => scrollTo('geo')} className="hover:text-white transition-colors">SEO to GEO</button>
-              <button onClick={() => scrollTo('coverage')} className="hover:text-white transition-colors">Coverage</button>
+              <button onClick={() => scrollTo('deliverables')} className="hover:text-white transition-colors">Deliverables</button>
               <button onClick={() => scrollTo('contact')} className="hover:text-white transition-colors">Contact</button>
             </div>
           </div>
